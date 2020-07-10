@@ -1,12 +1,12 @@
 %% Hyper-parameters
 
 % Number of randomized Haar-features
-nbrHaarFeatures = 200;
+nbrHaarFeatures = 100;
 % Number of training images, will be evenly split between faces and
 % non-faces. (Should be even.)
 nbrTrainImages = 1000;
 % Number of weak classifiers
-nbrWeakClassifiers = 200;
+nbrWeakClassifiers = 70;
 
 %% Load face and non-face data and plot a few examples
 load faces;
@@ -126,13 +126,13 @@ final_test_acc = test_acc(:,length(test_acc))
 %  number of weak classifiers.
 figure(4);
 %test_error = 1-test_acc;
-plot(1:nbrWeakClassifiers,test_acc);
-title("accuracy on test set depending on nr of weak classifiers")
+plot(1:nbrWeakClassifiers,test_acc, 'r-');
+hold on;
+plot(1:nbrWeakClassifiers,train_acc, 'b-');
+title("accuracy on test and training set depending on nr of weak classifiers")
+hold off
+legend('test','train')
 
-figure(5);
-%train_error = 1-train_acc;
-plot(1:nbrWeakClassifiers,train_acc);
-title("accuracy on training set depending on nr of weak classifiers")
 
 %% Plot some of the misclassified faces and non-faces
 %  Use the subplot command to make nice figures with multiple images.
